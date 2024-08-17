@@ -1,5 +1,6 @@
 package drawer;
 
+import calc.CalcUtil;
 import draw.DrawOval;
 import draw.DrawPolygon;
 import draw.DrawRect;
@@ -13,6 +14,8 @@ import java.awt.*;
 import java.util.List;
 
 public class GameDrawer {
+    private final CalcUtil calc = new CalcUtil();
+
     // コン
     public GameDrawer(int displayWidth, int displayHeight, Earth earth) {
         this.displayWidth = displayWidth;
@@ -155,17 +158,9 @@ public class GameDrawer {
     public void drawScore(Graphics2D g2d, int score, int hiScore) {
         int x = displayCenterX - frameWidth / 2 + 20;
         int y = displayCenterY - frameHeight / 2 + 30;
-        String scoreStrPadding = score < 10 ? "0000"
-                : score < 100 ? "000"
-                : score < 1000 ? "00"
-                : score < 10000 ? "0"
-                : "";
-        String hiScoreStrPadding = hiScore < 10 ? "0000"
-                : hiScore < 100 ? "000"
-                : hiScore < 1000 ? "00"
-                : hiScore < 10000 ? "0"
-                : "";
-        String scoreStr = "SCORE: " + scoreStrPadding + score + "  HI-SCORE: " + hiScoreStrPadding + hiScore;
+        String paddedScore = calc.paddingZero(score, 5);
+        String paddedHiScore = calc.paddingZero(hiScore, 5);
+        String scoreStr = "SCORE: " + paddedScore + "  HI-SCORE: " + paddedHiScore;
 
         font.setStr(g2d, fontScore, Color.WHITE);
         font.drawStr(g2d, scoreStr, x, y);

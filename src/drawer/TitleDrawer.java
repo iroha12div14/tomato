@@ -1,5 +1,6 @@
 package drawer;
 
+import calc.CalcUtil;
 import draw.DrawPolygon;
 import draw.DrawRect;
 import font.FontUtil;
@@ -7,6 +8,8 @@ import font.FontUtil;
 import java.awt.*;
 
 public class TitleDrawer {
+    private final CalcUtil calc = new CalcUtil();
+
     // コン
     public TitleDrawer(int displayWidth, int displayHeight) {
         this.displayWidth = displayWidth;
@@ -48,12 +51,8 @@ public class TitleDrawer {
         font.setStr(g2d, fontPressEnter, Color.WHITE);
         font.drawStr(g2d, pressEnterStr, peX, peY);
 
-        String padding = hiScore < 10 ? "0000"
-                : hiScore < 100 ? "000"
-                : hiScore < 1000 ? "00"
-                : hiScore < 10000 ? "0"
-                : "";
-        String hiScoreStr = this.hiScoreStr + padding + hiScore;
+        String paddedHiScore = calc.paddingZero(hiScore,5);
+        String hiScoreStr = this.hiScoreStr + paddedHiScore;
         int scoreW = font.strWidth(g2d, fontScore, hiScoreStr);
         int scoreX = displayCenterX - scoreW / 2;
         int scoreY = displayCenterY + 100;
