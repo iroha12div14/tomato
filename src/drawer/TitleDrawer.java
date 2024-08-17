@@ -3,13 +3,12 @@ package drawer;
 import calc.CalcUtil;
 import draw.DrawPolygon;
 import draw.DrawRect;
+import draw.ParamDraw;
 import font.FontUtil;
 
 import java.awt.*;
 
 public class TitleDrawer {
-    private final CalcUtil calc = new CalcUtil();
-
     // コン
     public TitleDrawer(int displayWidth, int displayHeight) {
         this.displayWidth = displayWidth;
@@ -22,13 +21,13 @@ public class TitleDrawer {
     // 枠
     public void drawFrame(Graphics2D g2d) {
         rect.fill(g2d, colorFrame,
-                rect.makeParam(displayCenterX, displayCenterY, frameWidth, frameHeight),
-                rect.makeSide(rect.CENTER, rect.CENTER)
+                pd.makeParam(displayCenterX, displayCenterY, frameWidth, frameHeight),
+                pd.makeSide(rect.CENTER, rect.CENTER)
         );
         rect.fill(g2d, Color.BLACK,
-                rect.makeParam(displayCenterX, displayCenterY,
+                pd.makeParam(displayCenterX, displayCenterY,
                         frameWidth - frameBold * 2, frameHeight - frameBold * 2),
-                rect.makeSide(rect.CENTER, rect.CENTER)
+                pd.makeSide(rect.CENTER, rect.CENTER)
         );
     }
 
@@ -63,7 +62,9 @@ public class TitleDrawer {
     // ------------------------------------------------------ //
 
     private final DrawPolygon rect = new DrawRect();
+    private final ParamDraw pd = new ParamDraw();
     private final FontUtil font = new FontUtil();
+    private final CalcUtil calc = new CalcUtil();
 
     private final int displayWidth;
     private final int displayHeight;

@@ -32,9 +32,4 @@ public interface Draw {
         Y,
         DIR
     }
-
-    enum Dir {
-        HORIZONTAL,
-        VERTICAL
-    }
 }

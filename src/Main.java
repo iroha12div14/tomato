@@ -24,9 +24,6 @@ class Main {
         DataElements elem = new DataElements();     // 受け渡しをするデータの要素
         SceneManager sceneManager = new SceneManager();  // 後に立ち上げるウインドウのマネージャ
 
-        data.put(elem.WORK_DIRECTORY,"_240816_Tomato");
-        data.put(elem.IS_ROOT_MAIN, false); // 直接Main.classを呼んだりJARから起動する場合はtrue
-
         // シーン切り替え時のシーン転換インスタンスの場所を埋め込んでおく
         data.put(elem.SCENE_MANAGER, sceneManager);
 
