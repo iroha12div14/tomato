@@ -3,7 +3,6 @@ package drawer;
 import calc.CalcUtil;
 import draw.DrawPolygon;
 import draw.DrawRect;
-import draw.ParamDraw;
 import font.FontUtil;
 
 import java.awt.*;
@@ -21,13 +20,13 @@ public class TitleDrawer {
     // 枠
     public void drawFrame(Graphics2D g2d) {
         rect.fill(g2d, colorFrame,
-                pd.makeParam(displayCenterX, displayCenterY, frameWidth, frameHeight),
-                pd.makeSide(rect.CENTER, rect.CENTER)
+                rect.makeParam(displayCenterX, displayCenterY, frameWidth, frameHeight),
+                rect.makeSide(rect.CENTER, rect.CENTER)
         );
         rect.fill(g2d, Color.BLACK,
-                pd.makeParam(displayCenterX, displayCenterY,
+                rect.makeParam(displayCenterX, displayCenterY,
                         frameWidth - frameBold * 2, frameHeight - frameBold * 2),
-                pd.makeSide(rect.CENTER, rect.CENTER)
+                rect.makeSide(rect.CENTER, rect.CENTER)
         );
     }
 
@@ -62,7 +61,6 @@ public class TitleDrawer {
     // ------------------------------------------------------ //
 
     private final DrawPolygon rect = new DrawRect();
-    private final ParamDraw pd = new ParamDraw();
     private final FontUtil font = new FontUtil();
     private final CalcUtil calc = new CalcUtil();
 

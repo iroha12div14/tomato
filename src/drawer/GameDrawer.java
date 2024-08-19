@@ -32,20 +32,19 @@ public class GameDrawer {
     public void drawFrame(Graphics2D g2d, boolean isGameOver) {
         Color cFrame = !isGameOver ? colorFrame : colorGameOver;
         rect.fill(g2d, cFrame,
-                pd.makeParam(displayCenterX, displayCenterY, frameWidth, frameHeight),
-                pd.makeSide(rect.CENTER, rect.CENTER)
+                rect.makeParam(displayCenterX, displayCenterY, frameWidth, frameHeight),
+                rect.makeSide(rect.CENTER, rect.CENTER)
         );
         rect.fill(g2d, Color.BLACK,
-                pd.makeParam(displayCenterX, displayCenterY,
+                rect.makeParam(displayCenterX, displayCenterY,
                         frameWidth - frameBold * 2, frameHeight - frameBold * 2),
-                pd.makeSide(rect.CENTER, rect.CENTER)
+                rect.makeSide(rect.CENTER, rect.CENTER)
         );
 
         Color cEarth = !isGameOver ? colorEarth : colorGameOver;
         int earthX = displayCenterX - frameWidth  / 2 + frameBold;
         rect.fill(g2d, cEarth,
-                pd.makeParam(earthX, earthY, frameWidth - frameBold * 2,
-                        earthH - frameBold)
+                rect.makeParam(earthX, earthY, frameWidth - frameBold * 2, earthH - frameBold)
         );
 
         Color cStarAndMoon = !isGameOver ? colorStarAndMoon : colorGameOver;
@@ -54,13 +53,13 @@ public class GameDrawer {
         font.drawStr(g2d, "★", 300, 160);
         font.drawStr(g2d, "★", 400, 130);
 
-        circle.fill(g2d, cStarAndMoon,
-                pd.makeParamRegular(550, 150, 50),
-                pd.makeSide(circle.CENTER, circle.CENTER)
+        circle.fillRegular(g2d, cStarAndMoon,
+                circle.makeParamRegular(550, 150, 25),
+                circle.makeSide(circle.CENTER, circle.CENTER)
         );
-        circle.fill(g2d, Color.BLACK,
-                pd.makeParamRegular(550 - 10, 150, 40),
-                pd.makeSide(circle.CENTER, circle.CENTER)
+        circle.fillRegular(g2d, Color.BLACK,
+                circle.makeParamRegular(550 - 10, 150, 20),
+                circle.makeSide(circle.CENTER, circle.CENTER)
         );
     }
 
@@ -95,20 +94,20 @@ public class GameDrawer {
 
         int dir = chara.getDir();
         dtz.fill(g2d, Color.RED,
-                pd.makeParamTrapezium(posX, posY, 0, charaWidth, charaHeight),
-                pd.makeSideTrapezium(dtz.CENTER, dtz.BOTTOM, dtz.HORIZONTAL)
+                dtz.makeParam(posX, posY, 0, charaWidth, charaHeight),
+                dtz.makeSide(dtz.CENTER, dtz.BOTTOM, dtz.HORIZONTAL)
         );
         dtz.draw(g2d, Color.BLACK,
-                pd.makeParamTrapezium(posX, posY, 0, charaWidth, charaHeight),
-                pd.makeSideTrapezium(dtz.CENTER, dtz.BOTTOM, dtz.HORIZONTAL)
+                dtz.makeParam(posX, posY, 0, charaWidth, charaHeight),
+                dtz.makeSide(dtz.CENTER, dtz.BOTTOM, dtz.HORIZONTAL)
         );
-        circle.fill(g2d, Color.RED,
-                pd.makeParamRegular(posX + dir * 6, posY - charaHeight + charaWidth / 2, charaWidth),
-                pd.makeSide(circle.CENTER, circle.BOTTOM)
+        circle.fillRegular(g2d, Color.RED,
+                circle.makeParamRegular(posX + dir * 6, posY - charaHeight + charaWidth / 2, charaWidth / 2),
+                circle.makeSide(circle.CENTER, circle.BOTTOM)
         );
-        circle.draw(g2d, Color.BLACK,
-                pd.makeParamRegular(posX + dir * 6, posY - charaHeight + charaWidth / 2, charaWidth),
-                pd.makeSide(circle.CENTER, circle.BOTTOM)
+        circle.drawRegular(g2d, Color.BLACK,
+                circle.makeParamRegular(posX + dir * 6, posY - charaHeight + charaWidth / 2, charaWidth / 2),
+                circle.makeSide(circle.CENTER, circle.BOTTOM)
         );
     }
 
@@ -123,8 +122,8 @@ public class GameDrawer {
                     int w = tomato.getWidth();
                     int h = tomato.getHeight();
                     circle.fill(g2d, colorTomato,
-                            pd.makeParam(displayCenterX + x, earthY - y, w, h),
-                            pd.makeSide(circle.CENTER, circle.BOTTOM)
+                            circle.makeParam(displayCenterX + x, earthY - y, w, h),
+                            circle.makeSide(circle.CENTER, circle.BOTTOM)
                     );
                     int padX = w / 4;
                     int padY = h * 3 / 4;
@@ -139,8 +138,8 @@ public class GameDrawer {
                     int h = tomato.getHeight() - 5;
 
                     circle.fill(g2d, colorTomatoFallen,
-                            pd.makeParam(displayCenterX + x, earthY - y + h, w, h),
-                            pd.makeSide(circle.CENTER, circle.BOTTOM)
+                            circle.makeParam(displayCenterX + x, earthY - y + h, w, h),
+                            circle.makeSide(circle.CENTER, circle.BOTTOM)
                     );
                 }
             }
@@ -179,7 +178,6 @@ public class GameDrawer {
     private final DrawPolygon rect = new DrawRect();
     private final DrawPolygon circle = new DrawOval();
     private final DrawTrapezium dtz = new DrawTrapezium();
-    private final ParamDraw pd = new ParamDraw();
     private final FontUtil font = new FontUtil();
 
     private final int displayWidth;
